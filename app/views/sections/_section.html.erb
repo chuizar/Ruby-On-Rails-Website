@@ -1,0 +1,21 @@
+<div id="<%= dom_id section %>">
+  <p>
+    <strong>Crn:</strong>
+    <%= section.CRN %>
+  </p>
+
+  <p>
+    <strong>Course:</strong>
+    <% section.course %>
+    <%= section.course.name do |course| %>
+   <% end %>
+  </p>
+
+  <p>
+    <strong>Semester:</strong>
+    <% section.semester %>
+    <%= section.semester.semester do |semester| %>
+   <% end %>
+  </p>
+
+</div>
