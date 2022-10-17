@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_17_000741) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_17_035520) do
   create_table "courses", force: :cascade do |t|
     t.integer "prefix_id", null: false
     t.integer "number"
@@ -18,6 +18,25 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_17_000741) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["prefix_id"], name: "index_courses_on_prefix_id"
+  end
+
+  create_table "people", force: :cascade do |t|
+    t.string "Name"
+    t.integer "t900Number"
+    t.string "Email"
+    t.string "PhoneNumber"
+    t.string "Address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "people_sections", force: :cascade do |t|
+    t.integer "person_id", null: false
+    t.integer "section_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["person_id"], name: "index_people_sections_on_person_id"
+    t.index ["section_id"], name: "index_people_sections_on_section_id"
   end
 
   create_table "prefixes", force: :cascade do |t|
@@ -43,7 +62,24 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_17_000741) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "students", force: :cascade do |t|
+    t.string "Name"
+    t.integer "t900Number"
+    t.string "Email"
+    t.string "PhoneNumber"
+    t.string "Address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "studentsections", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "courses", "prefixes"
+  add_foreign_key "people_sections", "people"
+  add_foreign_key "people_sections", "sections"
   add_foreign_key "sections", "courses"
   add_foreign_key "sections", "semesters"
 end

@@ -1,0 +1,36 @@
+<div id="<%= dom_id person %>">
+  <p>
+    <strong>Name:</strong>
+    <%= person.Name %>
+  </p>
+
+  <p>
+    <strong>T900number:</strong>
+    <%= person.t900Number %>
+  </p>
+
+  <p>
+    <strong>Email:</strong>
+    <%= person.Email %>
+  </p>
+
+  <p>
+    <strong>Phonenumber:</strong>
+    <%= person.PhoneNumber %>
+  </p>
+
+  <p>
+    <strong>Address:</strong>
+    <%= person.Address %>
+  </p>
+
+   <p>
+     <strong>Sections:</strong>
+     <% person.sections.each do |section| %>
+       <li>CRN; <%= section.CRN %></li>
+     <% end %>
+   </p>
+
+
+
+</div>

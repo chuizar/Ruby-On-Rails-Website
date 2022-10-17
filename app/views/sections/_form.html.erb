@@ -27,6 +27,12 @@
     <%= form.label :semester_id %>
     <%= form.collection_select :semester_id, Semester.all, :id, :semester %>
   </div>
+  
+   <div>
+   <%= form.label :person_id %><br>
+   <%= form.collection_check_boxes(:person_ids, @peoples, :id, :name) %>
+   </div>
+
 
   <div>
     <%= form.submit %>

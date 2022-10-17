@@ -4,6 +4,7 @@ class SectionsController < ApplicationController
   # GET /sections or /sections.json
   def index
     @sections = Section.all
+    @people = Person.all
   end
 
   # GET /sections/1 or /sections/1.json
@@ -13,10 +14,12 @@ class SectionsController < ApplicationController
   # GET /sections/new
   def new
     @section = Section.new
+    @people = Person.all
   end
 
   # GET /sections/1/edit
   def edit
+    @people = Person.all
   end
 
   # POST /sections or /sections.json
@@ -65,6 +68,6 @@ class SectionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def section_params
-      params.require(:section).permit(:CRN, :course_id, :semester_id)
+      params.require(:section).permit(:CRN, :course_id, :semester_id, :person_ids => [])
     end
 end

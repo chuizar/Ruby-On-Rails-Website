@@ -6,10 +6,33 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <%= javascript_importmap_tags %>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+ 
+</head>
+
+<body>
+    <nav>
+	
+        <a href="/prefixes"><button>Prefixes</button></a>
+	<a href="/semesters"><button>Semesters</button></a>
+        <a href="/sections"><button>Sections</button></a>
+	<a href="/courses"><button>Courses</button></a>
+	<a href="/people"><button>Students</button></a>
+	<marquee>
+	<%= image_tag "MSULOGO.png", height: 300 %>
+	</marquee>	
+    </nav>
+    <% yield %>
+</body>
+
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   </head>
 
   <body>
     <%= yield %>
   </body>
+
+
+
 </html>

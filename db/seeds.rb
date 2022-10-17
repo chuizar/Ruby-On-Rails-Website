@@ -1,7 +1,21 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+
+
+require "faker"
+
+Person.create!(Name: Faker::Name.name, t900Number: 900000001, Email: "Msu1@class.com", PhoneNumber: Faker::PhoneNumber.phone_number, Address: Faker::Address.full_address)
+Person.create!(Name: Faker::Name.name, t900Number: 900000002, Email: "Msu2@class.com", PhoneNumber: Faker::PhoneNumber.phone_number, Address: Faker::Address.full_address)
+
+Prefix.create!(prefix: "CS")
+Prefix.create!(prefix: "CS")
+
+Semester.create!(semester: "fall", year: 2022)
+Semester.create!(semester: "summer", year: 2022)
+
+Course.create!(prefix_id: 1, number: 12, name: "Intro into Theory")
+Course.create!(prefix_id: 2, number: 10, name: "Senior Experience")
+
+Section.create!(CRN: 50321, course_id: 3, semester_id: 2)
+
+
+
+
