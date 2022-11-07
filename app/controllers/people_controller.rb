@@ -5,6 +5,18 @@ class PeopleController < ApplicationController
   def index
     @people = Person.all
     @sections = Section.all
+
+    @people = if params[:query].present?
+      
+      Person.joins(:sections).where(
+        'name LIKE ? OR email LIKE ? OR Address LIKE ? OR T900number LIKE ? OR phonenumber LIKE ?', 
+        "%#{params[:query]}%" , "%#{params[:query]}%" , "%#{params[:query]}%" , "%#{params[:query]}%" , "%#{params[:query]}%")
+    else
+      @people.all
+    end
+
+   
+    
   end
 
   # GET /people/1 or /people/1.json
@@ -25,7 +37,8 @@ class PeopleController < ApplicationController
   # POST /people or /people.json
   def create
     @person = Person.new(person_params)
-
+    @sections = Section.all
+    @people = Person.all
     respond_to do |format|
       if @person.save
         format.html { redirect_to person_url(@person), notice: "Person was successfully created." }

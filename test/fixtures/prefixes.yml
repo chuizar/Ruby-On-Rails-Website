@@ -2,6 +2,9 @@
 
 one:
   prefix: MyString
+  prefix: MyS
 
 two:
   prefix: MyString
+  prefix: MyS
+

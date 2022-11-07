@@ -4,6 +4,11 @@ class SemestersController < ApplicationController
   # GET /semesters or /semesters.json
   def index
     @semesters = Semester.all
+    @semesters = if params[:query].present?
+      Semester.where('semester LIKE ? OR year LIKE ?', "%#{params[:query]}%" , "%#{params[:query]}%") 
+    else
+      @semesters.all
+    end
   end
 
   # GET /semesters/1 or /semesters/1.json
@@ -22,7 +27,7 @@ class SemestersController < ApplicationController
   # POST /semesters or /semesters.json
   def create
     @semester = Semester.new(semester_params)
-
+    @semesters = Semester.all
     respond_to do |format|
       if @semester.save
         format.html { redirect_to semester_url(@semester), notice: "Semester was successfully created." }

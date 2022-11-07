@@ -2,12 +2,35 @@
 
 <h1>Semesters</h1>
 
+
+<%= form_with url: semesters_path, method: :get, data: { turbo_frame: "results", turbo_action: "advance"} do |form| %>
+  Search <%= form.search_field :query, value: params[:query], oninput: "this.form.requestSubmit()" %>
+ <% end %>
+ 
+ <%= turbo_frame_tag "results" do %>
+  <div id="semesters">
+   <% @semesters.each do |semester| %>
+    <%= render semester %>
+       <p>
+         <%= link_to "Show this semester", semester %>
+       </p>
+     <% end %>
+
+
 <div id="semesters">
   <% @semesters.each do |semester| %>
     <%= render semester %>
     <p>
       <%= link_to "Show this semester", semester %>
     </p>
+
+  
+      </div>
+     
+   <% end %>
+
+
+
   <% end %>
 </div>
 

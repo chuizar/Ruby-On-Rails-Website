@@ -5,6 +5,15 @@ class SectionsController < ApplicationController
   def index
     @sections = Section.all
     @people = Person.all
+
+    
+    @sections = if params[:query].present?
+      Section.joins(:course, :semester).where(
+        'CRN LIKE ? OR courses.name LIKE ? OR courses.number LIKE ? OR semesters.semester LIKE ?', "%#{params[:query]}%" , "%#{params[:query]}%", "%#{params[:query]}%", "%#{params[:query]}%")
+    else
+      @sections.all
+    end
+
   end
 
   # GET /sections/1 or /sections/1.json
@@ -25,6 +34,8 @@ class SectionsController < ApplicationController
   # POST /sections or /sections.json
   def create
     @section = Section.new(section_params)
+    @people = Person.all
+    
 
     respond_to do |format|
       if @section.save

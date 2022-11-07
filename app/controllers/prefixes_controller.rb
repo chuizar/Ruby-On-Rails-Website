@@ -4,6 +4,11 @@ class PrefixesController < ApplicationController
   # GET /prefixes or /prefixes.json
   def index
     @prefixes = Prefix.all
+    @prefixes = if params[:query].present?
+      Prefix.where('prefix LIKE ?', "%#{params[:query]}%")
+    else
+      @prefixes.all
+    end
   end
 
   # GET /prefixes/1 or /prefixes/1.json
@@ -22,7 +27,7 @@ class PrefixesController < ApplicationController
   # POST /prefixes or /prefixes.json
   def create
     @prefix = Prefix.new(prefix_params)
-
+    @prefixes = Prefix.all
     respond_to do |format|
       if @prefix.save
         format.html { redirect_to prefix_url(@prefix), notice: "Prefix was successfully created." }

@@ -4,9 +4,9 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one:
-   student: one
-   section: one
+one: {}
+#   student: one
+#   section: one
 # column: value
 #
 two: {}

@@ -2,13 +2,33 @@
 
 <h1>People</h1>
 
+<%= form_with url: people_path, method: :get, data: { turbo_frame: "results", turbo_action: "advance"} do |form| %>
+  Search <%= form.search_field :query, value: params[:query], oninput: "this.form.requestSubmit()" %>
+ <% end %>
+ 
+ <%= turbo_frame_tag "results" do %>
+  <div id="people">
+   <% @people.each do |person| %>
+    <%= render person %>
+       <p>
+         <%= link_to "Show this person", person %>
+       </p>
+     <% end %>
+     <% end %>
+
+
 <div id="people">
   <% @people.each do |person| %>
     <%= render person %>
     <p>
       <%= link_to "Show this person", person %>
     </p>
+
+
   <% end %>
 </div>
 
 <%= link_to "New person", new_person_path %>
+
+
+

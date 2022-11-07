@@ -2,6 +2,23 @@
 
 <h1>Courses</h1>
 
+
+
+    <%= form_with url: courses_path, method: :get, data: { turbo_frame: "results", turbo_action: "advance"} do |form| %>
+      Search <%= form.search_field :query, value: params[:query], oninput: "this.form.requestSubmit()" %>
+     <% end %>
+     
+     <%= turbo_frame_tag "results" do %>
+      <div id="courses">
+       <% @courses.each do |course| %>
+        <%= render course %>
+           <p>
+             <%= link_to "Show this course", course %>
+           </p>
+      
+      <% end %>
+      <% end %>
+
 <div id="courses">
   <% @courses.each do |course| %>
     <%= render course %>

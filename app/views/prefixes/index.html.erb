@@ -1,14 +1,31 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>Prefixes</h1>
-
+<%= form_with url: prefixes_path, method: :get, data: { turbo_frame: "results", turbo_action: "advance"} do |form| %>
+  Search <%= form.search_field :query, value: params[:query], oninput: "this.form.requestSubmit()" %>
+ <% end %>
+ 
+ <%= turbo_frame_tag "results" do %>
+  <div id="prefixes">
+   <% @prefixes.each do |prefix| %>
+    <%= render prefix %>
+       <p>
+         <%= link_to "Show this prefix", prefix %>
+       </p>
+     <% end %>
+   </div>
+ <% end %>
 <div id="prefixes">
   <% @prefixes.each do |prefix| %>
     <%= render prefix %>
     <p>
       <%= link_to "Show this prefix", prefix %>
     </p>
-  <% end %>
+
+  
+    <% end %>
+
+  
 </div>
 
 <%= link_to "New prefix", new_prefix_path %>

@@ -2,12 +2,35 @@
 
 <h1>Sections</h1>
 
+<p>
+    <%= form_with url: sections_path, method: :get, data: { turbo_frame: "results", turbo_action: "advance"} do |form| %>
+      Search <%= form.search_field :query, value: params[:query], oninput: "this.form.requestSubmit()" %>
+     <% end %>
+     
+     <%= turbo_frame_tag "results" do %>
+      <div id="sections">
+       <% @sections.each do |section| %>
+        <%= render section %>
+           <p>
+             <%= link_to "Show this section", section %>
+           </p>
+      </p>
+      <% end %>
+
+
 <div id="sections">
   <% @sections.each do |section| %>
     <%= render section %>
     <p>
       <%= link_to "Show this section", section %>
     </p>
+    
+         
+       </div>
+       
+     
+
+      <%end %>
   <% end %>
 </div>
 

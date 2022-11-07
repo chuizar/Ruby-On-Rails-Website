@@ -4,6 +4,14 @@ class CoursesController < ApplicationController
   # GET /courses or /courses.json
   def index
     @courses = Course.all
+
+
+    @courses = if params[:query].present?
+      Course.joins(:prefix).where(
+        'prefixes.prefix LIKE ? OR number LIKE ? OR courses.name LIKE ?', "%#{params[:query]}%" , "%#{params[:query]}%" , "%#{params[:query]}%")
+    else
+      @courses.all
+    end
   end
 
   # GET /courses/1 or /courses/1.json
@@ -22,7 +30,7 @@ class CoursesController < ApplicationController
   # POST /courses or /courses.json
   def create
     @course = Course.new(course_params)
-
+    @courses = Course.all
     respond_to do |format|
       if @course.save
         format.html { redirect_to course_url(@course), notice: "Course was successfully created." }

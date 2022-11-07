@@ -1,15 +1,18 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+
 one:
   Name: MyString
-  t900Number: 1
-  Email: MyString
+  t900Number: 900200000
+  Email: a@b.c
   PhoneNumber: MyString
   Address: MyString
+  
 
 two:
   Name: MyString
-  t900Number: 1
-  Email: MyString
+  t900Number: 900100000
+  Email: a@b.c
   PhoneNumber: MyString
   Address: MyString
+  
