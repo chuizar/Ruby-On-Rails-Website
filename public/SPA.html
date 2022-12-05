@@ -1,0 +1,52 @@
+<html>
+<head>
+<title>Simple SPA</title>
+</head>
+<body>
+
+
+    <button onclick="fetch('prefixes', ['prefix'])">Prefixes</button>
+    <button onclick="fetch('semesters', ['semester', 'year'])">Semesters</button>
+    <button onclick="fetch('sections', ['CRN','course_id','semester_id'])">Sections</button>
+    <button onclick="fetch('courses', ['prefix_id','name', 'number'])">Courses</button>
+    <button onclick="fetch('people', ['Name','t900Number', 'Email','PhoneNumber','Address'])">Students</button>
+
+
+<div id="list">
+</div>
+
+<script>
+let l = document.getElementById("list");
+
+let clear = function() {
+    while (l.firstChild) {
+        l.removeChild(l.firstChild);
+    }
+};
+
+let http_request = new XMLHttpRequest();
+let fetch = function(which, fields) {
+    http_request.open("GET", "http://localhost:3000/" + which + ".json", true);
+    http_request.onreadystatechange = function () {
+        let done = 4, ok = 200;
+        if (http_request.readyState === done && http_request.status === ok) {
+            clear();
+            let ol = document.createElement('ol');
+            l.appendChild(ol);
+
+            let jo = JSON.parse(http_request.responseText);
+            for (i in jo) {
+                let li = document.createElement('li');
+                for (f in fields) {
+                    li.textContent += jo[i][fields[f]] + ' ';
+                }
+                ol.appendChild(li);
+            }
+        }
+    }
+    http_request.send (null);
+};
+</script>
+
+</body>
+</html>

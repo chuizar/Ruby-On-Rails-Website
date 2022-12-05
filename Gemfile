@@ -8,6 +8,8 @@ gem "rails", "~> 7.0.3", ">= 7.0.3.1"
 
 gem "ffi"
 
+gem "rack-cors"
+
 gem "faker"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
