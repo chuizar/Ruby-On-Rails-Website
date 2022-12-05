@@ -3,22 +3,22 @@
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
-Things you may want to cover:
+Cesar Huizar
 
-* Ruby version
+Ruby 3.1.2p20
 
-* System dependencies
+Rails 7.0.3.1
 
-* Configuration
+Help and resources from:
 
-* Database creation
+Joaquin Arroyo, Conner Meek, MSU denver cs discord, class slides
 
-* Database initialization
 
-* How to run the test suite
+How to Run:
 
-* Services (job queues, cache servers, search engines, etc.)
+Run rails server to start the program
 
-* Deployment instructions
+get the http://127.0.0.1:3000/SPA
 
-* ...
+
+Navigate through buttons
